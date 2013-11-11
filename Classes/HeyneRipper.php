@@ -8,6 +8,7 @@ class HeyneRipper {
 
 	/**
 	 * @var array
+	 * @todo determine everything dynamically
 	 */
 	protected $documents = array(
 		'rom-heyne1798' => 269,
@@ -18,9 +19,6 @@ class HeyneRipper {
 
 	const BASE_URL = 'http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###';
 
-	/**
-	 * @var string
-	 */
 	const TARGET_SCHEME = 'docs/###DOC###/###PAGE###.html';
 
 	/**
@@ -41,14 +39,10 @@ class HeyneRipper {
 					echo 'Dokument ' . $documentTitle . ' existiert bereits mit Seite ' . $i . "\n";
 				} else {
 					$currentContent = file_get_contents($currentUrl);
-					try {
-						$fp = @fopen($targetFile, 'w+');
-						@fwrite($fp, $currentContent);
-						@fclose($fp);
-						echo 'Dokument ' . $documentTitle . ' hinzugefuegt mit Seite ' . $i . "\n";
-					} catch (\Exception $e) {
-						echo 'Ein Fehler trat auf: ' . $e->getMessage();
-					}
+					$fp = @fopen($targetFile, 'w+');
+					@fwrite($fp, $currentContent);
+					@fclose($fp);
+					echo 'Dokument ' . $documentTitle . ' hinzugefuegt mit Seite ' . $i . "\n";
 				}
 			}
 		}
