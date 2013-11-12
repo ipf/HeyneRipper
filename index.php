@@ -48,4 +48,4 @@ if ($numberOfDocuments !== 0) {
 }
 
 echo "\n" . $timeTaken . ' seconds needed for execution ' . "\n";
-echo $timePerDocument . ' seconds per document ' . "\n";
+echo 'Average ' . $timePerDocument . ' seconds per document ' . "\n";
