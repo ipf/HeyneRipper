@@ -1,29 +1,26 @@
 <?php
-namespace Ipf\HeyneRipper;
+namespace Ipf\HeyneRipper\Ripper;
+
+/* * *************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2013 Ingo Pfennigstorf <pfennigstorf@sub-goettingen.de>
+ *      Goettingen State Library
+ *  
+ *  All rights reserved
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ * ************************************************************* */
 
 /**
- * Ripping all Documents for Heyne Digital
+ * Description 
  */
-class HeyneRipper {
-
-	/**
-	 * @var array
-	 * @todo determine everything dynamically
-	 */
-	protected $documents = array(
-		'rom-heyne1798' => 269,
-		'berlin-ms-germ-qrt-1666' => 311,
-		'bern-mss-muel-507' => 631,
-		'weimar-hs-2056' => 492
-	);
+class HtmlRipper extends Ripper {
 
 	const BASE_URL = 'http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###';
 
 	const TARGET_SCHEME = 'docs/###DOC###/###PAGE###.html';
 
-	/**
-	 * @return void
-	 */
 	public function main() {
 		foreach ($this->documents as $documentTitle => $numberOfPages) {
 
@@ -47,13 +44,4 @@ class HeyneRipper {
 			}
 		}
 	}
-
-	/**
-	 * @param $targetDirectory
-	 */
-	protected function createDirectory($targetDirectory) {
-		$directoryToTest = dirname($targetDirectory);
-		mkdir($directoryToTest, 0777, TRUE);
-	}
-
-}
+} 

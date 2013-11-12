@@ -12,5 +12,10 @@
 	],
 	"config": {
 		"vendor-dir": "Classes/Contrib"
+	},
+	"autoload": {
+		"psr-0": {
+			"Ipf\\HeyneRipper\\": "Classes"
+		}
 	}
 }
