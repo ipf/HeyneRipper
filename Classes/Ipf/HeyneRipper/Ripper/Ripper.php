@@ -57,5 +57,4 @@ abstract class Ripper {
 		return $this->counter;
 	}
 
-
 } 
