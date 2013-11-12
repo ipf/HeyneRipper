@@ -16,7 +16,7 @@ class HeyneRipper {
 
 		if (class_exists($classBuilder)) {
 			$ripperClass = new $classBuilder;
-			$ripperClass->main();
+			return $ripperClass->main();
 		} else {
 			$message = 'Class ' . $classBuilder . ' does not exist';
 			\Ipf\HeyneRipper\Logger\Log::addWarning($message);

@@ -22,6 +22,11 @@ abstract class Ripper {
 		'weimar-hs-2056' => 492
 	);
 
+	/**
+	 * @var int
+	 */
+	protected $counter = 0;
+
 	public abstract function main();
 
 	/**
@@ -43,4 +48,17 @@ abstract class Ripper {
 		}
 	}
 
+	/**
+	 * @return void
+	 */
+	public function increaseCounter() {
+		$this->counter++;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getCounter() {
+		return $this->counter;
+	}
 } 

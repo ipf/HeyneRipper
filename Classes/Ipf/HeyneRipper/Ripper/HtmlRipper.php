@@ -14,14 +14,17 @@ namespace Ipf\HeyneRipper\Ripper;
 use Ipf\HeyneRipper\Logger\Log;
 
 /**
- * Description 
+ * Description
  */
 class HtmlRipper extends Ripper {
 
 	const BASE_URL = 'http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###';
 
-	const TARGET_SCHEME = 'docs/###DOC###/###PAGE###.html';
+	const TARGET_SCHEME = 'Data/docs/###DOC###/###PAGE###.html';
 
+	/**
+	 * @return void
+	 */
 	public function main() {
 		foreach ($this->getDocuments() as $documentTitle => $numberOfPages) {
 
@@ -41,8 +44,10 @@ class HtmlRipper extends Ripper {
 					@fwrite($fp, $currentContent);
 					@fclose($fp);
 					Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
+					$this->increaseCounter();
 				}
 			}
 		}
+		return $this->getCounter();
 	}
 } 
