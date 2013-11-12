@@ -28,7 +28,7 @@ class HtmlRipper extends Ripper {
 	 */
 	public function main() {
 		foreach ($this->getDocuments() as $documentTitle => $numberOfPages) {
-
+			echo "\n" . $documentTitle . "\n";
 			$currentDocumentUrl = str_replace('###DOC###', $documentTitle, self::BASE_URL);
 			$targetDirectory = str_replace('###DOC###', $documentTitle, self::TARGET_SCHEME);
 			$this->createDirectory($targetDirectory);
@@ -40,24 +40,22 @@ class HtmlRipper extends Ripper {
 				if (file_exists($targetFile)) {
 					Log::addInfo('Document ' . $documentTitle . ' with page ' . $i . ' already exists');
 				} else {
-					$currentContent = $this->getDocumentsContent($currentUrl);
-
-					$fp = @fopen($targetFile, 'w+');
-					@fwrite($fp, $currentContent);
-					@fclose($fp);
-					Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
-					$this->increaseCounter();
-					$this->indexDocument($documentTitle, $i, $currentContent);
+					try {
+						$currentContent = $this->getDocumentsContent($currentUrl);
+						$fp = @fopen($targetFile, 'w+');
+						@fwrite($fp, $currentContent);
+						@fclose($fp);
+						Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
+						$this->increaseCounter();
+						echo "#";
+					} catch (\Exception $e) {
+						Log::addError($e->getMessage());
+						echo "F";
+					}
 				}
 			}
 		}
 		return $this->getCounter();
-	}
-
-	protected function indexDocument($title, $pageNumber, $content) {
-		/** @var \Ipf\HeyneRipper\Indexer\IndexerInterface $indexer */
-		$indexer = new IndexerFactory('Solr');
-		$indexer->commitToIndex($title, $pageNumber, $content);
 	}
 
 	protected function getDocumentsContent($url) {

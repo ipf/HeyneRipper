@@ -35,5 +35,6 @@ class SolrIndexer implements IndexerInterface{
 	 */
 	function getIndexerInstance() {
 		$this->indexerInstance = new \Solarium\Client();
+		return $this->indexerInstance;
 	}
 }
