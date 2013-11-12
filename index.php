@@ -6,25 +6,28 @@ $startTime = time();
 $heyneRipper = new Ipf\HeyneRipper\HeyneRipper();
 
 function cleanDirectories() {
+
 	$dir = 'Data';
-	$iterator = new RecursiveDirectoryIterator($dir);
-	$files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
-	foreach ($files as $file) {
-		if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-			continue;
+	if (is_dir($dir)) {
+		$iterator = new RecursiveDirectoryIterator($dir);
+		$files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
+		foreach ($files as $file) {
+			if ($file->getFilename() === '.' || $file->getFilename() === '..') {
+				continue;
+			}
+			if ($file->isDir()) {
+				rmdir($file->getRealPath());
+			} else {
+				unlink($file->getRealPath());
+			}
 		}
-		if ($file->isDir()) {
-			rmdir($file->getRealPath());
-		} else {
-			unlink($file->getRealPath());
-		}
+		rmdir($dir);
 	}
-	rmdir($dir);
 }
 
 if (array_key_exists(1, $argv) && $argv[1] === 'clean') {
 	cleanDirectories();
-	die('Directories cleared');
+	die('Directories cleared' . "\n");
 }
 
 try {
