@@ -50,6 +50,10 @@ class Log {
 		$log->addInfo($info);
 	}
 
+	static public function addError($error) {
+
+}
+
 	/**
 	 * @return Logger
 	 */
@@ -59,6 +63,7 @@ class Log {
 		$loggerDirectory = self::getLoggerDirectory();
 		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::WARNING));
 		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::INFO));
+		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::ERROR));
 		return $log;
 	}
 

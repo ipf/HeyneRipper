@@ -11,7 +11,7 @@ namespace Ipf\HeyneRipper\Indexer;
 
 interface IndexerInterface {
 
-	function commitToIndex();
+	function commitToIndex($title, $pageNumner, $content);
 
 	function getIndexerInstance();
 }

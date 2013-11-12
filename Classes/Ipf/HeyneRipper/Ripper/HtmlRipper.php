@@ -11,6 +11,7 @@ namespace Ipf\HeyneRipper\Ripper;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
+use Ipf\HeyneRipper\Indexer\IndexerFactory;
 use Ipf\HeyneRipper\Logger\Log;
 
 /**
@@ -45,9 +46,16 @@ class HtmlRipper extends Ripper {
 					@fclose($fp);
 					Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
 					$this->increaseCounter();
+					$this->indexDocument($documentTitle, $i, $currentContent);
 				}
 			}
 		}
 		return $this->getCounter();
+	}
+
+	protected function indexDocument($title, $pageNumber, $content) {
+		/** @var \Ipf\HeyneRipper\Indexer\IndexerInterface $indexer */
+		$indexer = new IndexerFactory('Solr');
+		$indexer->commitToIndex($title, $pageNumber, $content);
 	}
 } 

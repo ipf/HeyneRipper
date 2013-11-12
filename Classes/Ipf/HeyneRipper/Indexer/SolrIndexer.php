@@ -15,11 +15,25 @@ namespace Ipf\HeyneRipper\Indexer;
  */
 class SolrIndexer implements IndexerInterface{
 
-	function commitToIndex() {
-		// TODO: Implement commitToIndex() method.
+	/**
+	 * @var \Solarium\Client
+	 */
+	protected $indexerInstance;
+
+	/**
+	 * @param string $title
+	 * @param int $pageNumber
+	 * @param string $content
+	 * @return bool
+	 */
+	public function commitToIndex($title, $pageNumber, $content) {
+		return FALSE;
 	}
 
+	/**
+	 * @return void
+	 */
 	function getIndexerInstance() {
-		// TODO: Implement getIndexerInstance() method.
+		$this->indexerInstance = new \Solarium\Client();
 	}
 }

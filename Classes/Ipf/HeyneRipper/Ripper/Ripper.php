@@ -61,4 +61,6 @@ abstract class Ripper {
 	public function getCounter() {
 		return $this->counter;
 	}
+
+
 } 
