@@ -40,7 +40,8 @@ class HtmlRipper extends Ripper {
 				if (file_exists($targetFile)) {
 					Log::addInfo('Document ' . $documentTitle . ' with page ' . $i . ' already exists');
 				} else {
-					$currentContent = file_get_contents($currentUrl);
+					$currentContent = $this->getDocumentsContent($currentUrl);
+
 					$fp = @fopen($targetFile, 'w+');
 					@fwrite($fp, $currentContent);
 					@fclose($fp);
@@ -57,5 +58,15 @@ class HtmlRipper extends Ripper {
 		/** @var \Ipf\HeyneRipper\Indexer\IndexerInterface $indexer */
 		$indexer = new IndexerFactory('Solr');
 		$indexer->commitToIndex($title, $pageNumber, $content);
+	}
+
+	protected function getDocumentsContent($url) {
+		$content = @file_get_contents($url);
+		if (strlen($content) === 0) {
+			Log::addError($url . ' does not contain any content');
+			throw new \Exception($url . ' does not contain any content');
+		} else {
+			return $content;
+		}
 	}
 } 

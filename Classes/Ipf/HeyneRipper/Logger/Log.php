@@ -51,8 +51,9 @@ class Log {
 	}
 
 	static public function addError($error) {
-
-}
+		$log = self::getLogger();
+		$log->addInfo($error);
+	}
 
 	/**
 	 * @return Logger
