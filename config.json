@@ -16,5 +16,7 @@
 			"title": "weimar-hs-2056",
 			"pages": 492
 		}
-	]
+	],
+	"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###",
+	"targetScheme": "Data/docs/###DOC###/###PAGE###.html"
 }

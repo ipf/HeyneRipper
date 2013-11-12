@@ -15,27 +15,20 @@ namespace Ipf\HeyneRipper\Ripper;
  */
 abstract class Ripper {
 
-	protected $documents = array(
-		'rom-heyne1798' => 269,
-		'berlin-ms-germ-qrt-1666' => 311,
-		'bern-mss-muel-507' => 631,
-		'weimar-hs-2056' => 492
-	);
-
 	/**
 	 * @var int
 	 */
 	protected $counter = 0;
 
+	/**
+	 * @var \stdClass
+	 */
+	protected $configuration;
+
 	public abstract function main();
 
-	/**
-	 * @return array
-	 */
-	protected function getDocuments() {
-		$configFile = file_get_contents('config.json');
-		echo $configFile;
-		return $this->documents;
+	public function __construct() {
+		$this->configuration = json_decode(file_get_contents('config.json'));
 	}
 
 	/**

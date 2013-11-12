@@ -11,7 +11,6 @@ namespace Ipf\HeyneRipper\Ripper;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-use Ipf\HeyneRipper\Indexer\IndexerFactory;
 use Ipf\HeyneRipper\Logger\Log;
 
 /**
@@ -19,33 +18,29 @@ use Ipf\HeyneRipper\Logger\Log;
  */
 class HtmlRipper extends Ripper {
 
-	const BASE_URL = 'http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###';
-
-	const TARGET_SCHEME = 'Data/docs/###DOC###/###PAGE###.html';
-
 	/**
 	 * @return void
 	 */
 	public function main() {
-		foreach ($this->getDocuments() as $documentTitle => $numberOfPages) {
-			echo "\n" . $documentTitle . "\n";
-			$currentDocumentUrl = str_replace('###DOC###', $documentTitle, self::BASE_URL);
-			$targetDirectory = str_replace('###DOC###', $documentTitle, self::TARGET_SCHEME);
+		foreach ($this->configuration->documents as $document) {
+			echo "\n" . $document->title . "\n";
+			$currentDocumentUrl = str_replace('###DOC###', $document->title, $this->configuration->baseUrl);
+			$targetDirectory = str_replace('###DOC###', $document->title, $this->configuration->targetScheme);
 			$this->createDirectory($targetDirectory);
 
-			for ($i = 0; $i <= $numberOfPages; $i++) {
+			for ($i = 0; $i <= $document->pages; $i++) {
 				$currentUrl = str_replace('###PAGE###', $i, $currentDocumentUrl);
 				$targetFile = str_replace('###PAGE###', $i, $targetDirectory);
 
 				if (file_exists($targetFile)) {
-					Log::addInfo('Document ' . $documentTitle . ' with page ' . $i . ' already exists');
+					Log::addInfo('Document ' . $document->title . ' with page ' . $i . ' already exists');
 				} else {
 					try {
 						$currentContent = $this->getDocumentsContent($currentUrl);
 						$fp = @fopen($targetFile, 'w+');
 						@fwrite($fp, $currentContent);
 						@fclose($fp);
-						Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
+						Log::addInfo('Document ' . $document->title . ' added with page ' . $i);
 						$this->increaseCounter();
 						echo "#";
 					} catch (\Exception $e) {
