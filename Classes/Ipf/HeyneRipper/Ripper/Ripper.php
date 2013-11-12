@@ -33,6 +33,8 @@ abstract class Ripper {
 	 * @return array
 	 */
 	protected function getDocuments() {
+		$configFile = file_get_contents('config.json');
+		echo $configFile;
 		return $this->documents;
 	}
 
