@@ -22,7 +22,7 @@ class HtmlRipper extends Ripper {
 	const TARGET_SCHEME = 'docs/###DOC###/###PAGE###.html';
 
 	public function main() {
-		foreach ($this->documents as $documentTitle => $numberOfPages) {
+		foreach ($this->getDocuments() as $documentTitle => $numberOfPages) {
 
 			$currentDocumentUrl = str_replace('###DOC###', $documentTitle, self::BASE_URL);
 			$targetDirectory = str_replace('###DOC###', $documentTitle, self::TARGET_SCHEME);

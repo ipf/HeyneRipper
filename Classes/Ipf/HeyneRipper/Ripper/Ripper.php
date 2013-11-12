@@ -25,6 +25,13 @@ abstract class Ripper {
 	public abstract function main();
 
 	/**
+	 * @return array
+	 */
+	protected function getDocuments() {
+		return $this->documents;
+	}
+
+	/**
 	 * @param string $targetDirectory
 	 * @return bool
 	 */
