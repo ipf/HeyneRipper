@@ -11,6 +11,7 @@ namespace Ipf\HeyneRipper\Ripper;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
+use Ipf\HeyneRipper\Logger\Log;
 
 /**
  * Description 
@@ -33,13 +34,13 @@ class HtmlRipper extends Ripper {
 				$targetFile = str_replace('###PAGE###', $i, $targetDirectory);
 
 				if (file_exists($targetFile)) {
-					echo 'Dokument ' . $documentTitle . ' existiert bereits mit Seite ' . $i . "\n";
+					Log::addInfo('Document ' . $documentTitle . ' with page ' . $i . ' already exists');
 				} else {
 					$currentContent = file_get_contents($currentUrl);
 					$fp = @fopen($targetFile, 'w+');
 					@fwrite($fp, $currentContent);
 					@fclose($fp);
-					echo 'Dokument ' . $documentTitle . ' hinzugefuegt mit Seite ' . $i . "\n";
+					Log::addInfo('Document ' . $documentTitle . ' added with page ' . $i);
 				}
 			}
 		}

@@ -2,3 +2,4 @@ docs/
 .idea/*
 composer.lock
 /Classes/Contrib/
+/Data/*

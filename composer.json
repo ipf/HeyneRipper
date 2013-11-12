@@ -2,7 +2,8 @@
 	"name": "ipf/heyne-ripper",
 	"description": "Ripping documents from Heyne Digital",
 	"require-dev": {
-		"solarium/solarium": "~3"
+		"solarium/solarium": "~3",
+		"monolog/monolog": "~1"
 	},
 	"authors": [
 		{
