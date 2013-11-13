@@ -20,6 +20,9 @@ abstract class Ripper {
 	 */
 	protected $counter = 0;
 
+	/**
+	 * @var int
+	 */
 	protected $errorCounter = 0;
 
 	/**
