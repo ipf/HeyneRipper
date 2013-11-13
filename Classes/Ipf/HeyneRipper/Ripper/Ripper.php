@@ -20,15 +20,24 @@ abstract class Ripper {
 	 */
 	protected $counter = 0;
 
+	protected $errorCounter = 0;
+
 	/**
 	 * @var \stdClass
 	 */
 	protected $configuration;
 
+	/**
+	 * @var \stdClass
+	 */
+	protected $ripperConfiguration;
+
 	public abstract function main();
 
 	public function __construct() {
 		$this->configuration = json_decode(file_get_contents('config.json'));
+		$className = get_called_class();
+		$this->ripperConfiguration = $this->configuration->ripper[0]->$className;
 	}
 
 	/**
@@ -47,7 +56,23 @@ abstract class Ripper {
 	 * @return void
 	 */
 	public function increaseCounter() {
+		echo "#";
 		$this->counter++;
+	}
+
+	/**
+	 * @return void
+	 */
+	public function increaseErrorCounter() {
+		echo "F";
+		$this->errorCounter++;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getErrorCounter() {
+		return $this->errorCounter;
 	}
 
 	/**

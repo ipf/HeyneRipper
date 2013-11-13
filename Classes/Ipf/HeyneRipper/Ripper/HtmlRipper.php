@@ -24,33 +24,38 @@ class HtmlRipper extends Ripper {
 	public function main() {
 		foreach ($this->configuration->documents as $document) {
 			echo "\n" . $document->title . "\n";
-			$currentDocumentUrl = str_replace('###DOC###', $document->title, $this->configuration->baseUrl);
-			$targetDirectory = str_replace('###DOC###', $document->title, $this->configuration->targetScheme);
+			$currentDocumentUrl = str_replace('###DOC###', $document->title, $this->ripperConfiguration->baseUrl);
+			$targetDirectory = str_replace('###DOC###', $document->title, $this->ripperConfiguration->targetScheme);
 			$this->createDirectory($targetDirectory);
 
 			for ($i = 0; $i <= $document->pages; $i++) {
 				$currentUrl = str_replace('###PAGE###', $i, $currentDocumentUrl);
 				$targetFile = str_replace('###PAGE###', $i, $targetDirectory);
 
-				if (file_exists($targetFile)) {
-					Log::addInfo('Document ' . $document->title . ' with page ' . $i . ' already exists');
-				} else {
+				if (!file_exists($targetFile)) {
 					try {
 						$currentContent = $this->getDocumentsContent($currentUrl);
-						$fp = @fopen($targetFile, 'w+');
-						@fwrite($fp, $currentContent);
-						@fclose($fp);
-						Log::addInfo('Document ' . $document->title . ' added with page ' . $i);
+						$this->writeContentsToFile($currentContent, $targetFile);
 						$this->increaseCounter();
-						echo "#";
 					} catch (\Exception $e) {
 						Log::addError($e->getMessage());
-						echo "F";
+						$this->increaseErrorCounter();
 					}
 				}
 			}
 		}
 		return $this->getCounter();
+	}
+
+	/**
+	 * @param string $content
+	 * @param string $file
+	 * @return void
+	 */
+	protected function writeContentsToFile($content, $file) {
+		$fp = @fopen($file, 'w+');
+		@fwrite($fp, $content);
+		@fclose($fp);
 	}
 
 	/**
@@ -61,7 +66,6 @@ class HtmlRipper extends Ripper {
 	protected function getDocumentsContent($url) {
 		$content = @file_get_contents($url);
 		if (strlen($content) === 0) {
-			Log::addError($url . ' does not contain any content');
 			throw new \Exception($url . ' does not contain any content');
 		} else {
 			return $content;

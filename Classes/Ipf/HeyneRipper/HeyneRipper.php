@@ -19,7 +19,7 @@ class HeyneRipper {
 			return $ripperClass->main();
 		} else {
 			$message = 'Class ' . $classBuilder . ' does not exist';
-			\Ipf\HeyneRipper\Logger\Log::addWarning($message);
+			\Ipf\HeyneRipper\Logger\Log::addError($message);
 			throw new \Exception($message, 1384248127);
 		}
 	}
