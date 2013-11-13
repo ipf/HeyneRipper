@@ -8,7 +8,6 @@ namespace Ipf\HeyneRipper\Logger;
  *      Goettingen State Library
  *  
  *  All rights reserved
- *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
 use Ipf\HeyneRipper\Utility\ConfigurationUtility;

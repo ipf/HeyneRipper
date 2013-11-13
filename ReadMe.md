@@ -26,6 +26,7 @@ which cleans the *Data* directory where logfiles and downloaded data reside.
 
 ## Todos
 
+* enable search engine indexing (Solr, elasticsearch)
 * implement error counter
 * implement more rippers
 * write more unit tests

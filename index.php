@@ -20,7 +20,6 @@ try {
 }
 
 \Ipf\HeyneRipper\Utility\TimeUtility::stop();
-\Ipf\HeyneRipper\Utility\TimeUtility::executionTime();
 
 echo "\n" . \Ipf\HeyneRipper\Utility\TimeUtility::executionTime() . ' seconds needed for execution ' . "\n";
 echo 'Average ' . \Ipf\HeyneRipper\Utility\TimeUtility::timePerDocument($numberOfDocuments) . ' seconds per document ' . "\n";

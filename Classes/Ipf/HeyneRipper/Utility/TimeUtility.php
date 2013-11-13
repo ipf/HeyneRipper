@@ -8,7 +8,6 @@ namespace Ipf\HeyneRipper\Utility;
  *      Goettingen State Library
  *  
  *  All rights reserved
- *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
 /**
