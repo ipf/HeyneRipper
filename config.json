@@ -25,5 +25,16 @@
 			}
 		}
 	],
-	"logfile": "Data/Logs/HeyneRipper.log"
+	"logger": {
+		"warning": {
+			"logFile": "Data/Logs/Warning.log"
+		},
+		"error": {
+			"logFile": "Data/Logs/Error.log"
+		},
+		"info": {
+			"logFile": "Data/Logs/Info.log"
+		}
+	}
+
 }

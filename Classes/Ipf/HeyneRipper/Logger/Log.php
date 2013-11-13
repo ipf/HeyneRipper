@@ -25,39 +25,39 @@ class Log {
 	 * @return void
 	 */
 	static public function addWarning($warning) {
-		$log = self::getLogger();
-		$log->addWarning($warning, array('Class' => get_called_class()));
+		$log = self::getLogger('warning');
+		$log->addWarning($warning);
 	}
 
 	static public function addInfo($info) {
-		$log = self::getLogger();
+		$log = self::getLogger('info');
 		$log->addInfo($info);
 	}
 
 	static public function addError($error) {
-		$log = self::getLogger();
+		$log = self::getLogger('error');
 		$log->addError($error);
 	}
 
 	/**
 	 * @return Logger
 	 */
-	protected function getLogger() {
+	protected function getLogger($type) {
 		/** @var \Monolog\Logger $log */
 		$log = new Logger('HeyneLogger');
-		$loggerDirectory = self::getLoggerDirectory();
-		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::WARNING));
-		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::INFO));
-		$log->pushHandler(new StreamHandler($loggerDirectory, Logger::ERROR));
+		$logLevels = Logger::getLevels();
+		// get integer from constant
+		$typeConstant = $logLevels[strtoupper($type)];
+		$log->pushHandler(new StreamHandler(self::getLogFile($type), $typeConstant));
 		return $log;
 	}
 
 	/**
 	 * @return string
 	 */
-	protected function getLoggerDirectory() {
+	protected function getLogFile($type = 'warning') {
 
-		$loggerConfiguration = ConfigurationUtility::getConfiguration()->logfile;
+		$loggerConfiguration = ConfigurationUtility::getConfiguration()->logger->$type->logFile;
 		$loggerDirectory = dirname($loggerConfiguration);
 
 		if (!is_dir($loggerDirectory)) {
