@@ -1,51 +1,26 @@
 <?php
 require_once('Classes/Contrib/autoload.php');
 
-$startTime = time();
+\Ipf\HeyneRipper\Utility\TimeUtility::start();
 
 $heyneRipper = new Ipf\HeyneRipper\HeyneRipper();
 
-function cleanDirectories() {
-
-	$dir = 'Data';
-	if (is_dir($dir)) {
-		$iterator = new RecursiveDirectoryIterator($dir);
-		$files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
-		foreach ($files as $file) {
-			if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-				continue;
-			}
-			if ($file->isDir()) {
-				rmdir($file->getRealPath());
-			} else {
-				unlink($file->getRealPath());
-			}
-		}
-		rmdir($dir);
-	}
-}
-
-if (array_key_exists(1, $argv) && $argv[1] === 'clean') {
-	cleanDirectories();
-	die('Directories cleared' . "\n");
+if (count($argv) > 1) {
+	\Ipf\HeyneRipper\Utility\CommandLineArgumentUtility::parseCommandLineArguments($argv);
 }
 
 try {
 	$numberOfDocuments = $heyneRipper->main('Html');
-	echo "\n" . $numberOfDocuments . ' Documents added' . "\n";
+	$message = $numberOfDocuments . ' Documents added';
+	\Ipf\HeyneRipper\Logger\Log::addInfo($message);
+	echo "\n" . $message . "\n";
 } catch (\Exception $e) {
+	\Ipf\HeyneRipper\Logger\Log::addError($e->getMessage());
 	echo $e->getMessage();
 }
 
-$endTime = time();
+\Ipf\HeyneRipper\Utility\TimeUtility::stop();
+\Ipf\HeyneRipper\Utility\TimeUtility::executionTime();
 
-$timeTaken = $endTime - $startTime;
-
-$timePerDocument = 0;
-
-if ($numberOfDocuments !== 0) {
-	$timePerDocument = $timeTaken / $numberOfDocuments;
-}
-
-echo "\n" . $timeTaken . ' seconds needed for execution ' . "\n";
-echo 'Average ' . $timePerDocument . ' seconds per document ' . "\n";
+echo "\n" . \Ipf\HeyneRipper\Utility\TimeUtility::executionTime() . ' seconds needed for execution ' . "\n";
+echo 'Average ' . \Ipf\HeyneRipper\Utility\TimeUtility::timePerDocument($numberOfDocuments) . ' seconds per document ' . "\n";
