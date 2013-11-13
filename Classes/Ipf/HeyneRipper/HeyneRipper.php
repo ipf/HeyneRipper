@@ -18,8 +18,7 @@ class HeyneRipper {
 			$ripperClass = new $classBuilder;
 			return $ripperClass->main();
 		} else {
-			$message = 'Class ' . $classBuilder . ' does not exist';
-			throw new \Exception($message, 1384248127);
+			throw new \Exception('Class ' . $classBuilder . ' does not exist', 1384248127);
 		}
 	}
 }

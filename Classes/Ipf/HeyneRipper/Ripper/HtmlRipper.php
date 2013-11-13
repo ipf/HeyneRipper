@@ -48,17 +48,6 @@ class HtmlRipper extends Ripper {
 	}
 
 	/**
-	 * @param string $content
-	 * @param string $file
-	 * @return void
-	 */
-	protected function writeContentsToFile($content, $file) {
-		$fp = @fopen($file, 'w+');
-		@fwrite($fp, $content);
-		@fclose($fp);
-	}
-
-	/**
 	 * @param $url
 	 * @return string
 	 * @throws \Exception

@@ -56,6 +56,17 @@ abstract class Ripper {
 	}
 
 	/**
+	 * @param string $content
+	 * @param string $file
+	 * @return void
+	 */
+	protected function writeContentsToFile($content, $file) {
+		$fp = @fopen($file, 'w+');
+		@fwrite($fp, $content);
+		@fclose($fp);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function increaseCounter() {
