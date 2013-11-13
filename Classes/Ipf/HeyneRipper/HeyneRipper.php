@@ -7,6 +7,7 @@ namespace Ipf\HeyneRipper;
 class HeyneRipper {
 
 	/**
+	 * @throws \Exception
 	 * @param string $type
 	 * @return void
 	 */

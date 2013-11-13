@@ -1,14 +1,14 @@
 <?php
 namespace Ipf\HeyneRipper\Utility;
 
-	/* * *************************************************************
-	 *  Copyright notice
-	 *
-	 *  (c) 2013 Ingo Pfennigstorf <pfennigstorf@sub-goettingen.de>
-	 *      Goettingen State Library
-	 *
-	 *  All rights reserved
-	 * ************************************************************* */
+/* * *************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2013 Ingo Pfennigstorf <pfennigstorf@sub-goettingen.de>
+ *      Goettingen State Library
+ *
+ *  All rights reserved
+ * ************************************************************* */
 
 /**
  * Description
