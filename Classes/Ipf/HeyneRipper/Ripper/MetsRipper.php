@@ -14,9 +14,9 @@ namespace Ipf\HeyneRipper\Ripper;
 use Ipf\HeyneRipper\Logger\Log;
 
 /**
- * Get TEI Documents
+ * Get METS Documents
  */
-class TeiRipper extends Ripper {
+class MetsRipper extends Ripper {
 
 	public function main() {
 		parent::getSingleDocument();
