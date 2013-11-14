@@ -11,6 +11,7 @@ if (count($argv) > 1) {
 
 try {
 	$numberOfDocuments = $heyneRipper->main('Html');
+	$numberOfDocuments += $heyneRipper->main('StructureHtml');
 	$message = $numberOfDocuments . ' Documents added';
 	\Ipf\HeyneRipper\Logger\Log::addInfo($message);
 	echo "\n" . $message . "\n";

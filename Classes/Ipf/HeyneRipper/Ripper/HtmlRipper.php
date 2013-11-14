@@ -45,17 +45,4 @@ class HtmlRipper extends Ripper {
 		return $this->getCounter();
 	}
 
-	/**
-	 * @param $url
-	 * @return string
-	 * @throws \Exception
-	 */
-	protected function getDocumentsContent($url) {
-		$content = @file_get_contents($url);
-		if (strlen($content) === 0) {
-			throw new \Exception($url . ' does not contain any content');
-		} else {
-			return $content;
-		}
-	}
 } 

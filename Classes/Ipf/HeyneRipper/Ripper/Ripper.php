@@ -40,7 +40,7 @@ abstract class Ripper {
 	public function __construct() {
 		$this->configuration = json_decode(file_get_contents('config.json'));
 		$className = get_called_class();
-		$this->ripperConfiguration = $this->configuration->ripper[0]->$className;
+		$this->ripperConfiguration = $this->configuration->ripper->$className;
 	}
 
 	/**
@@ -64,6 +64,20 @@ abstract class Ripper {
 		$fp = @fopen($file, 'w+');
 		@fwrite($fp, $content);
 		@fclose($fp);
+	}
+
+	/**
+	 * @param $url
+	 * @return string
+	 * @throws \Exception
+	 */
+	protected function getDocumentsContent($url) {
+		$content = @file_get_contents($url);
+		if (strlen($content) === 0) {
+			throw new \Exception($url . ' does not contain any content');
+		} else {
+			return $content;
+		}
 	}
 
 	/**

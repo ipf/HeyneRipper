@@ -17,14 +17,16 @@
 			"pages": 492
 		}
 	],
-	"ripper": [
-		{
-			"Ipf\\HeyneRipper\\Ripper\\HtmlRipper": {
-				"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###",
-				"targetScheme": "Data/docs/###DOC###/###PAGE###.html"
-			}
+	"ripper": {
+		"Ipf\\HeyneRipper\\Ripper\\HtmlRipper": {
+			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=raw&format=xhtml&doc=###DOC###&page=###PAGE###",
+			"targetScheme": "Data/docs/###DOC###/###PAGE###.html"
+		},
+		"Ipf\\HeyneRipper\\Ripper\\StructureHtmlRipper": {
+			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=structure&format=xhtml&doc=###DOC###",
+			"targetScheme": "Data/Structure/###DOC###.html"
 		}
-	],
+	},
 	"logger": {
 		"warning": {
 			"logFile": "Data/Logs/Warning.log"
