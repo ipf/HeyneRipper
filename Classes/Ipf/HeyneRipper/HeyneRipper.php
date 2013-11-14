@@ -8,18 +8,16 @@ class HeyneRipper {
 
 	/**
 	 * @throws \Exception
-	 * @param string $type
-	 * @return void
+	 * @param string $className
+	 * @return int
 	 */
-	public function main($type) {
+	public function main($className) {
 
-		$classBuilder = 'Ipf\\HeyneRipper\\Ripper\\' .$type . 'Ripper';
-
-		if (class_exists($classBuilder)) {
-			$ripperClass = new $classBuilder;
+		if (class_exists($className)) {
+			$ripperClass = new $className;
 			return $ripperClass->main();
 		} else {
-			throw new \Exception('Class ' . $classBuilder . ' does not exist', 1384248127);
+			throw new \Exception('Class ' . $className . ' does not exist', 1384248127);
 		}
 	}
 }

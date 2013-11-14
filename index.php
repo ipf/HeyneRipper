@@ -9,12 +9,14 @@ if (count($argv) > 1) {
 	\Ipf\HeyneRipper\Utility\CommandLineArgumentUtility::parseCommandLineArguments($argv);
 }
 
+$configuredRipper = \Ipf\HeyneRipper\Utility\ConfigurationUtility::getConfiguration()->ripper;
+
+$numberOfDocuments = 0;
+
 try {
-	$numberOfDocuments = $heyneRipper->main('Html');
-	$numberOfDocuments += $heyneRipper->main('StructureHtml');
-	$numberOfDocuments += $heyneRipper->main('Tei');
-	$numberOfDocuments += $heyneRipper->main('TeiEnriched');
-	$numberOfDocuments += $heyneRipper->main('Mets');
+	foreach ($configuredRipper as $className => $ripperConfiguration) {
+		$numberOfDocuments += $heyneRipper->main($className);
+	}
 	$message = $numberOfDocuments . ' Documents added';
 	\Ipf\HeyneRipper\Logger\Log::addInfo($message);
 	echo "\n" . $message . "\n";
