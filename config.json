@@ -41,6 +41,10 @@
 		"Ipf\\HeyneRipper\\Ripper\\ImagesRipper": {
 			"baseUrl": "http://134.76.21.92:8080/images/###DOC###/500/###PAGE###.jpeg",
 			"targetScheme": "Data/Images/###DOC###/500/###PAGE###.jpeg"
+		},
+		"Ipf\\HeyneRipper\\Ripper\\KmlRipper": {
+			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?format=kml&doc=###DOC###&page=###PAGE###",
+			"targetScheme": "Data/Kml/###DOC###/###PAGE###.kml"
 		}
 	},
 	"logger": {

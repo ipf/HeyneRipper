@@ -11,9 +11,9 @@ namespace Ipf\HeyneRipper\Ripper;
  * ************************************************************* */
 
 /**
- * Rips pages in HTML format
+ * Rips KML files per document page
  */
-class HtmlRipper extends Ripper {
+class KmlRipper extends Ripper {
 
 	/**
 	 * @return void
