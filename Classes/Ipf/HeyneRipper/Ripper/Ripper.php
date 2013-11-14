@@ -11,6 +11,7 @@ namespace Ipf\HeyneRipper\Ripper;
  * ************************************************************* */
 
 use Ipf\HeyneRipper\Logger\Log;
+use Ipf\HeyneRipper\Utility\ConfigurationUtility;
 
 /**
  * Class for common methods and properties
@@ -40,7 +41,7 @@ abstract class Ripper {
 	public abstract function main();
 
 	public function __construct() {
-		$this->configuration = json_decode(file_get_contents('config.json'));
+		$this->configuration = ConfigurationUtility::getConfiguration();
 		$className = get_called_class();
 		$this->ripperConfiguration = $this->configuration->ripper->$className;
 	}
