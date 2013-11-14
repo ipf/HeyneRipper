@@ -28,6 +28,5 @@ which cleans the *Data* directory where logfiles and downloaded data reside.
 
 * enable search engine indexing (Solr, elasticsearch)
 * implement error counter
-* implement more rippers
 * write more unit tests
 * more cli options
