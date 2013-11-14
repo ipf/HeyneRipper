@@ -14,9 +14,9 @@ namespace Ipf\HeyneRipper\Ripper;
 use Ipf\HeyneRipper\Logger\Log;
 
 /**
- * Get the structure of a document
+ * Get TEI Documents
  */
-class StructureHtmlRipper extends Ripper {
+class TeiRipper extends Ripper {
 
 	public function main() {
 		foreach ($this->configuration->documents as $document) {
@@ -39,5 +39,4 @@ class StructureHtmlRipper extends Ripper {
 		}
 		return $this->getCounter();
 	}
-
 } 

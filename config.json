@@ -25,6 +25,10 @@
 		"Ipf\\HeyneRipper\\Ripper\\StructureHtmlRipper": {
 			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/queries/getText.xq?mode=structure&format=xhtml&doc=###DOC###",
 			"targetScheme": "Data/Structure/###DOC###.html"
+		},
+		"Ipf\\HeyneRipper\\Ripper\\TeiRipper": {
+			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/data/tei/###DOC###.xml",
+			"targetScheme": "Data/TEI/###DOC###.xml"
 		}
 	},
 	"logger": {
