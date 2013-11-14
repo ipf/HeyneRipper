@@ -37,6 +37,10 @@
 		"Ipf\\HeyneRipper\\Ripper\\MetsRipper": {
 			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/data/mets/###DOC###.mets.xml",
 			"targetScheme": "Data/Mets/###DOC###.mets.xml"
+		},
+		"Ipf\\HeyneRipper\\Ripper\\ImagesRipper": {
+			"baseUrl": "http://134.76.21.92:8080/images/###DOC###/500/###PAGE###.jpeg",
+			"targetScheme": "Data/Images/###DOC###/500/###PAGE###.jpeg"
 		}
 	},
 	"logger": {
