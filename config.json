@@ -29,6 +29,10 @@
 		"Ipf\\HeyneRipper\\Ripper\\TeiRipper": {
 			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/data/tei/###DOC###.xml",
 			"targetScheme": "Data/TEI/###DOC###.xml"
+		},
+		"Ipf\\HeyneRipper\\Ripper\\TeiEnrichedRipper": {
+			"baseUrl": "http://134.76.21.92:8080/exist/rest/db/archaeo18/data/tei-enriched/###DOC###-enriched.xml",
+			"targetScheme": "Data/TEI/Enriched/###DOC###.xml"
 		}
 	},
 	"logger": {

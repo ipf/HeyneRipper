@@ -13,6 +13,7 @@ try {
 	$numberOfDocuments = $heyneRipper->main('Html');
 	$numberOfDocuments += $heyneRipper->main('StructureHtml');
 	$numberOfDocuments += $heyneRipper->main('Tei');
+	$numberOfDocuments += $heyneRipper->main('TeiEnriched');
 	$message = $numberOfDocuments . ' Documents added';
 	\Ipf\HeyneRipper\Logger\Log::addInfo($message);
 	echo "\n" . $message . "\n";
