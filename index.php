@@ -3,6 +3,8 @@ require_once('Classes/Contrib/autoload.php');
 
 \Ipf\HeyneRipper\Utility\TimeUtility::start();
 
+echo file_get_contents('Resources/Public/Ascii/Logo.txt');
+
 $heyneRipper = new Ipf\HeyneRipper\HeyneRipper();
 
 if (count($argv) > 1) {
@@ -15,6 +17,7 @@ $numberOfDocuments = 0;
 
 try {
 	foreach ($configuredRipper as $className => $ripperConfiguration) {
+		echo "\n" . $className . "\n";
 		$numberOfDocuments += $heyneRipper->main($className);
 	}
 	$message = $numberOfDocuments . ' Documents added';

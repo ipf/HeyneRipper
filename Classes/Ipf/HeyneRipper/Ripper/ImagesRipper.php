@@ -24,21 +24,26 @@ class ImagesRipper extends Ripper {
 			echo "\n" . $document->title . "\n";
 			$currentDocumentUrl = str_replace('###DOC###', $document->title, $this->ripperConfiguration->baseUrl);
 			$targetDirectory = str_replace('###DOC###', $document->title, $this->ripperConfiguration->targetScheme);
-			$this->createDirectory($targetDirectory);
 
 			for ($i = 0; $i <= $document->pages; $i++) {
 				$pageNumber = $this->getImagePath($i);
 				$currentUrl = str_replace('###PAGE###', $pageNumber, $currentDocumentUrl);
 				$targetFile = str_replace('###PAGE###', $pageNumber, $targetDirectory);
 
-				if (!file_exists($targetFile)) {
-					try {
-						$currentContent = $this->getDocumentsContent($currentUrl);
-						$this->writeContentsToFile($currentContent, $targetFile);
-						$this->increaseCounter();
-					} catch (\Exception $e) {
-						Log::addError($e->getMessage());
-						$this->increaseErrorCounter();
+				foreach ($this->ripperConfiguration->size as $imageSize) {
+					$currentUrl = str_replace('###SIZE###', $imageSize, $currentUrl);
+					$targetFile = str_replace('###SIZE###', $imageSize, $targetFile);
+					$this->createDirectory($targetFile);
+
+					if (!file_exists($targetFile)) {
+						try {
+							$currentContent = $this->getDocumentsContent($currentUrl);
+							$this->writeContentsToFile($currentContent, $targetFile);
+							$this->increaseCounter();
+						} catch (\Exception $e) {
+							Log::addError($e->getMessage());
+							$this->increaseErrorCounter();
+						}
 					}
 				}
 			}
